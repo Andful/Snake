@@ -4,6 +4,7 @@ var height=20;
 var grid = createArray(width,height);
 
 var canvas = document.getElementById("canvas");
+var points=document.getElementById("points");
 canvas.width=width*blockSize;
 canvas.height=height*blockSize;
 var graphics = canvas.getContext("2d");
@@ -99,6 +100,7 @@ function update()
 		{
 			point=new Vector2i(parseInt(Math.random()*width,10),parseInt(Math.random()*height,10));
 		}
+		points.innerText=parseInt(points.innerText)+10;
 	}
 	else
 	{
