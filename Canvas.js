@@ -39,6 +39,8 @@ var pos=new Vector2i(0,0);
 
 var point = new Vector2i(parseInt(Math.random()*width,10),parseInt(Math.random()*height,10));
 
+var interval=null;
+
 function update()
 {
 	var newDir=new Vector2i(dir.x,dir.y);
@@ -84,13 +86,8 @@ function update()
 	if(touchingSnake(snake,pos))
 	{
 		window.alert("game over");
-		while(snake.length>0)
-		{
-			snake.pop();
-		}
-		point.x=-1;
-		point.y=-1;
-
+		clearInterval(interval);
+		return;
 	}
 	snake.push(new Vector2i(pos.x,pos.y));
 	if(pos.x==point.x && pos.y==point.y)
@@ -124,4 +121,4 @@ function update()
 			blockSize);
 }
 
-setInterval(update,1000/15);
+interval=setInterval(update,1000/15);
