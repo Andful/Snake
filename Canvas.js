@@ -106,7 +106,6 @@ function update()
 	{
 		snake.shift();
 	}
-	console.log(point.x);
 	graphics.fillStyle="#000000";
 	graphics.fillRect(0,0,canvas.width,canvas.height);
 	graphics.fillStyle="#FF0000";
