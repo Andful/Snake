@@ -9,12 +9,12 @@ function Keyboard()
 		return this[char];
 	};
 	var keyboard=this;
-	window.onkeydown=function(evt)
+	window.addEventListener("keydown",function(evt)
 	{
 		keyboard[evt.which]=true;
-	};
-	window.onkeyup=function(evt)
+	});
+	window.addEventListener("keyup",function(evt)
 	{
 		keyboard[evt.which]=false;
-	};
+	})
 }

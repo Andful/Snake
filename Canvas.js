@@ -39,25 +39,27 @@ var pos=new Vector2i(0,0);
 
 var point = new Vector2i(parseInt(Math.random()*width,10),parseInt(Math.random()*height,10));
 
+var interval=null;
+
 function update()
 {
 	var newDir=new Vector2i(dir.x,dir.y);
-	if(keyboard.get(37) && !(dir.x==1 && dir.y==0))
+	if((keyboard.get(37)||keyboard.get(65)) && !(dir.x==1 && dir.y==0))
 	{
 		newDir.x=-1;
 		newDir.y=0;
 	}
-	if(keyboard.get(38)&& !(dir.x==0 && dir.y==1))
+	if((keyboard.get(38)||keyboard.get(87))&& !(dir.x==0 && dir.y==1))
 	{
 		newDir.x=0;
 		newDir.y=-1;
 	}
-	if(keyboard.get(39)&& !(dir.x==-1 && dir.y==0))
+	if((keyboard.get(39)||keyboard.get(68))&& !(dir.x==-1 && dir.y==0))
 	{
 		newDir.x=1;
 		newDir.y=0;
 	}
-	if(keyboard.get(40)&& !(dir.x==0 && dir.y==-1))
+	if((keyboard.get(40)||keyboard.get(83))&& !(dir.x==0 && dir.y==-1))
 	{
 		newDir.x=0;
 		newDir.y=1;
@@ -84,13 +86,8 @@ function update()
 	if(touchingSnake(snake,pos))
 	{
 		window.alert("game over");
-		while(snake.length>0)
-		{
-			snake.pop();
-		}
-		point.x=-1;
-		point.y=-1;
-
+		clearInterval(interval);
+		return;
 	}
 	snake.push(new Vector2i(pos.x,pos.y));
 	if(pos.x==point.x && pos.y==point.y)
@@ -124,4 +121,4 @@ function update()
 			blockSize);
 }
 
-setInterval(update,1000/15);
+interval=setInterval(update,1000/15);
